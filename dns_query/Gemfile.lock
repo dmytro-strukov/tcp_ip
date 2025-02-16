@@ -8,7 +8,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  minitest (~> 5.25.4)
+  minitest
 
 BUNDLED WITH
    2.5.20

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DNSFlags
   FLAGS_TOTAL_SIZE = 16
   FLAGS_SIZE = {
@@ -9,7 +11,7 @@ module DNSFlags
     RA: 1,
     Z: 3,
     R_CODE: 4
-  }
+  }.freeze
 
   DEFAULT_FLAGS = [
     [:QR, 0],
@@ -19,8 +21,8 @@ module DNSFlags
     [:RD, 1],
     [:RA, 0],
     [:Z, 0],
-    [:R_CODE, 0] 
-  ]
+    [:R_CODE, 0]
+  ].freeze
 
   def make(flags = DEFAULT_FLAGS)
     output = 0
@@ -30,15 +32,15 @@ module DNSFlags
       name, value = flag
       available_bits -= FLAGS_SIZE.fetch(name)
 
-      if flags[index] != flags.last
-        output |= value << available_bits
-      else
-        output |= value
-      end
+      output |= if flags[index] != flags.last
+                  value << available_bits
+                else
+                  value
+                end
     end
 
     output
   end
 
   module_function :make
-end 
+end

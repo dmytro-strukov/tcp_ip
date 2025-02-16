@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DNSHeader
   ID_SIZE = 16
 
@@ -30,9 +32,9 @@ module DNSHeader
   def range_from_bits(bits)
     Range.new(
       0,
-      (2 ** bits) - 1
+      (2**bits) - 1
     )
   end
 
   module_function :range_from_bits
-end 
+end
